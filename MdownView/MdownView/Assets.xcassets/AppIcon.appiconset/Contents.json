@@ -1,61 +1,61 @@
 {
   "images" : [
     {
-      "filename" : "MDViewLogo16.png",
+      "filename" : "MDViewLogo_16.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "16x16"
     },
     {
-      "filename" : "MDViewLogo32 1.png",
+      "filename" : "MDViewLogo_32 1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "16x16"
     },
     {
-      "filename" : "MDViewLogo32.png",
+      "filename" : "MDViewLogo_32.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "32x32"
     },
     {
-      "filename" : "MDViewLogo64.png",
+      "filename" : "MDViewLogo_64.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "32x32"
     },
     {
-      "filename" : "MDViewLogo128.png",
+      "filename" : "MDViewLogo_128.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "128x128"
     },
     {
-      "filename" : "MDViewLogo256 1.png",
+      "filename" : "MDViewLogo_256 1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
     },
     {
-      "filename" : "MDViewLogo256.png",
+      "filename" : "MDViewLogo_256.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
     },
     {
-      "filename" : "MDViewLogo512.png",
+      "filename" : "MDViewLogo_512 1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
     },
     {
-      "filename" : "MDViewLogo512 1.png",
+      "filename" : "MDViewLogo_512.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
     },
     {
-      "filename" : "MDViewLogo.png",
+      "filename" : "MDViewLogo1024.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"

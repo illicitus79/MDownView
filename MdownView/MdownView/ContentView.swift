@@ -130,21 +130,31 @@ struct ContentView: View {
                     Label("New", systemImage: "plus.square")
                 }
                 .keyboardShortcut("n", modifiers: .command)
+                .help("Create a new tab")
 
                 Button(action: { isImporterPresented = true }) {
                     Label("Open", systemImage: "folder")
                 }
                 .keyboardShortcut("o", modifiers: .command)
+                .help("Open one or more markdown files")
 
                 Button(action: saveActiveTab) {
                     Label("Save", systemImage: "square.and.arrow.down")
                 }
                 .keyboardShortcut("s", modifiers: .command)
+                .help("Save the current tab")
+
+                Button(action: saveAllTabs) {
+                    Label("Save All", systemImage: "square.and.arrow.down.on.square")
+                }
+                .keyboardShortcut("s", modifiers: [.command, .option])
+                .help("Save all tabs with a file location")
 
                 Button(action: saveActiveTabAs) {
                     Label("Save As", systemImage: "square.and.arrow.down.on.square")
                 }
                 .keyboardShortcut("S", modifiers: [.command, .shift])
+                .help("Save the current tab as a new file")
             }
 
             ToolbarItemGroup {
@@ -155,6 +165,7 @@ struct ContentView: View {
                 }
                 .pickerStyle(.segmented)
                 .frame(width: 220)
+                .help("Switch between edit, view, and split modes")
 
                 Picker("Tabs", selection: $tabLayout) {
                     ForEach(TabLayout.allCases) { layout in
@@ -163,6 +174,7 @@ struct ContentView: View {
                 }
                 .pickerStyle(.segmented)
                 .frame(width: 160)
+                .help("Move tabs to the top or left")
 
                 Picker("Theme", selection: $preferredColorScheme) {
                     ForEach(ColorSchemePreference.allCases) { preference in
@@ -171,6 +183,7 @@ struct ContentView: View {
                     }
                 }
                 .pickerStyle(.menu)
+                .help("Override light or dark appearance")
             }
         }
     }
@@ -194,6 +207,7 @@ struct ContentView: View {
                         }
                         .buttonStyle(.plain)
                         .padding(.top, 8)
+                        .help("Create a new tab")
                     }
                     .padding(12)
                 }
@@ -212,6 +226,7 @@ struct ContentView: View {
                                 .background(theme.tabBackground, in: Capsule())
                         }
                         .buttonStyle(.plain)
+                        .help("Create a new tab")
                     }
                     .padding(.horizontal, 12)
                     .padding(.vertical, 6)
@@ -257,6 +272,7 @@ struct ContentView: View {
                     .foregroundStyle(theme.textMuted)
             }
             .buttonStyle(.plain)
+            .help("Close this tab")
         }
         .padding(axis == .vertical ? 10 : 8)
         .frame(
@@ -429,6 +445,22 @@ struct ContentView: View {
     private func saveActiveTabAs() {
         guard let tab = activeTab else { return }
         saveTabAs(tab.id)
+    }
+
+    private func saveAllTabs() {
+        var unsavedCount = 0
+
+        for tab in tabs where tab.isDirty {
+            if let url = tab.url {
+                write(tab: tab, to: url)
+            } else {
+                unsavedCount += 1
+            }
+        }
+
+        if unsavedCount > 0 {
+            presentError("Save All skipped \(unsavedCount) tabs without a file location. Use Save As for those tabs.")
+        }
     }
 
     private func saveTabAs(_ id: MarkdownTab.ID) {
